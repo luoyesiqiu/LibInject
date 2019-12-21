@@ -96,10 +96,9 @@ int UninjectDllFromProcess(DWORD pid,const char * ModuleName) {
 		return -1;
 	}
 
-	WaitForSingleObject(hThread, INFINITE);
-	
-	CloseHandle(hProcess);
-	CloseHandle(hThread);
+	//WaitForSingleObject(hThread, INFINITE);
+	//CloseHandle(hThread);
+	//CloseHandle(hProcess);
 	return 0;
 }
 
@@ -159,12 +158,11 @@ int InjectDllToProcess(TCHAR *DllPath, DWORD pid,HMODULE *hLoadLibraryModule) {
 		OutputDebugString("Cannot create thread to call LoadLibraryA.\n");
 		return -1;
 	}
-	//6. 释放资源
-	WaitForSingleObject(hThread, INFINITE);
-	VirtualFreeEx(hThread, lpAddr, 0, MEM_RELEASE);
+	//WaitForSingleObject(hThread, INFINITE);
+	//VirtualFreeEx(hThread, lpAddr, 0, MEM_RELEASE);
 
-	CloseHandle(hProcess);
-	CloseHandle(hThread);
+	//CloseHandle(hThread);
+	//CloseHandle(hProcess);
 	return 0;
 }
 
