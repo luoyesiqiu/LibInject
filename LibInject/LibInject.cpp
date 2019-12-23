@@ -230,7 +230,7 @@ INT_PTR CALLBACK Dlgproc( HWND hWnd,  UINT uMsg,  WPARAM wParam,  LPARAM lParam)
 		
 	}
 	else if (uMsg == WM_CLOSE) {
-		exit(0);
+		EndDialog(hWnd, FALSE);
 	}
 	return FALSE;
 }
