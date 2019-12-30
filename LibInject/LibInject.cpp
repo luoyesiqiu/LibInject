@@ -8,6 +8,7 @@
 #include <TlHelp32.h>
 #include <cstdio>
 #include <Shellapi.h>
+#include <wchar.h>
 
 TCHAR szDllPath[MAX_PATH] = { 0 };
 TCHAR szDllName[MAX_PATH] = { 0 };
@@ -199,26 +200,28 @@ INT_PTR CALLBACK Dlgproc( HWND hWnd,  UINT uMsg,  WPARAM wParam,  LPARAM lParam)
 			GetDlgItemText(hWnd, IDC_PROC_NAME, ProcName,MAX_PATH);
 			int Pid = GetPidByProcessName(ProcName);
 			if (szDllName == NULL) {
-				MessageBox(hWnd, "停止注入失败,请先拖入dll文件", "提示", MB_OK | MB_ICONWARNING);
+				MessageBox(hWnd, "卸载注入失败,请先拖入dll文件", "提示", MB_OK | MB_ICONWARNING);
 				break;
 			}
 
 			if (Pid < 0) {
-				MessageBox(hWnd, "停止注入失败,请检查进程名", "提示", MB_OK | MB_ICONWARNING);
+				MessageBox(hWnd, "卸载注入失败,请检查进程名", "提示", MB_OK | MB_ICONWARNING);
 				break;
 			}
 			int UninjectRet = UninjectDllFromProcess(Pid, szDllName);
 			if (UninjectRet >= 0) {
-				MessageBox(hWnd, "停止注入成功", "提示", 0);
+				MessageBox(hWnd, "卸载注入成功", "提示", 0);
 			}
 			else {
-				MessageBox(hWnd, "停止注入失败，可能该进程没有注入DLL文件", "提示", MB_OK|MB_ICONWARNING);
+				MessageBox(hWnd, "卸载注入失败，可能该进程没有注入DLL文件", "提示", MB_OK|MB_ICONWARNING);
 			}
 			break;
 			}
 		}
 	}
 	else if (uMsg == WM_DROPFILES) {
+		memset(szDllPath, 0, MAX_PATH);
+		memset(szDllName, 0, MAX_PATH);
 		TCHAR szFilePath[MAX_PATH] = { 0 };
 		DragQueryFile((HDROP)wParam, 0, szFilePath, MAX_PATH - 1);
 		DragFinish((HDROP)wParam);
