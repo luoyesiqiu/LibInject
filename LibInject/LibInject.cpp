@@ -8,7 +8,6 @@
 #include <TlHelp32.h>
 #include <cstdio>
 #include <Shellapi.h>
-#include <wchar.h>
 
 TCHAR szDllPath[MAX_PATH] = { 0 };
 TCHAR szDllName[MAX_PATH] = { 0 };
@@ -230,7 +229,6 @@ INT_PTR CALLBACK Dlgproc( HWND hWnd,  UINT uMsg,  WPARAM wParam,  LPARAM lParam)
 
 		TCHAR* t = (TCHAR*)strrchr(szDllPath, '\\');
 		memcpy_s(szDllName, MAX_PATH, t+1, strlen(t+1));
-		
 	}
 	else if (uMsg == WM_CLOSE) {
 		EndDialog(hWnd, FALSE);
