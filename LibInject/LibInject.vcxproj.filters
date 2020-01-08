@@ -40,6 +40,9 @@
     <Image Include="LibInject.ico">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="logo.ico">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LibInject.rc">

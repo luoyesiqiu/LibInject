@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="LibInject.ico" />
+    <Image Include="logo.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
