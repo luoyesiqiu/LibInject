@@ -70,7 +70,7 @@ int UninjectDllFromProcess(DWORD pid,const char * ModuleName) {
 	//2. 获取函数的地址
 	FARPROC hFarProc = GetProcAddress(hKernel32Module, "FreeLibrary");
 	if (NULL == hFarProc) {
-		OutputDebugString("Cannot find get function address.\n");
+		OutputDebugString("Cannot get function address.\n");
 		return -1;
 	}
 
@@ -143,7 +143,7 @@ int InjectDllToProcess(TCHAR *DllPath, DWORD pid,HMODULE *hLoadLibraryModule) {
 	//4. 获取函数的地址
 	FARPROC hFarProc = GetProcAddress(hKernel32Module, "LoadLibraryA");
 	if (NULL == hFarProc) {
-		OutputDebugString("Cannot find get function address.\n");
+		OutputDebugString("Cannot get function address.\n");
 		return -1;
 	}
 	//5. 在远程的进程创建一个线程调用LoadLibraryA
