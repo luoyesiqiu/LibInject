@@ -151,9 +151,9 @@ int InjectDllToProcess(TCHAR *DllPath, DWORD pid,HMODULE *hLoadLibraryModule) {
 		, (LPTHREAD_START_ROUTINE)hFarProc //函数地址
 		, lpAddr //传给线程的参数,必须是目标进程能访问到的地址
 		, 0
-		, NULL 
+		, NULL
 	);
-	
+
 	if (NULL == hThread) {
 		OutputDebugString("Cannot create thread to call LoadLibraryA.\n");
 		return -1;
@@ -217,6 +217,9 @@ INT_PTR CALLBACK Dlgproc( HWND hWnd,  UINT uMsg,  WPARAM wParam,  LPARAM lParam)
 			break;
 			}
 		}
+	}
+	else if (uMsg == WM_INITDIALOG) {
+		SetDlgItemText(hWnd, IDC_DLL_PATH, "将需要注入的DLL拖入本窗口");
 	}
 	else if (uMsg == WM_DROPFILES) {
 		memset(szDllPath, 0, MAX_PATH);
